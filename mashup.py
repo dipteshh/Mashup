@@ -17,31 +17,31 @@ def mashup(singer,count,duration,outputFile):
 
 
     path = '.'
-    # for v in list:
-    #     try:
-    #         yt = YouTube(v)
-    #     except:
-    #         print('Connection Error when initialising url')
-    #     try :
-    #         yt.streams.filter(progressive=True,).first().download(output_path=path)
-    #     except:
-    #         print('Cant download video')
-    #     print(yt.title)
-    # print('Download Completed')
+    for v in list:
+        try:
+            yt = YouTube(v)
+        except:
+            print('Connection Error when initialising url')
+        try :
+            yt.streams.filter(progressive=True,).first().download(output_path=path)
+        except:
+            print('Cant download video')
+        print(yt.title)
+    print('Download Completed')
 
     files = os.listdir('.')
     print(files)
 
-    # for f in files :
-    #     if '.3gpp' in f:
-    #         try :
-    #             v = mp.VideoFileClip(f)
-    #             audioFile = os.path.splitext(os.path.basename(f))[0]
-    #             v.audio.write_audiofile(audioFile+'.mp3')
-    #             print(v)
-    #         except :
-    #             print('Cant convert video to audio')
-    #     print('Converted to Audio')
+    for f in files :
+        if '.3gpp' in f:
+            try :
+                v = mp.VideoFileClip(f)
+                audioFile = os.path.splitext(os.path.basename(f))[0]
+                v.audio.write_audiofile(audioFile+'.mp3')
+                print(v)
+            except :
+                print('Cant convert video to audio')
+        print('Converted to Audio')
 
     audioFiles =[]
     for f in files :
@@ -64,4 +64,4 @@ def mashup(singer,count,duration,outputFile):
     finalClip.write_audiofile(outputFile)
 
 
-mashup('Kid cudi',5,20,'abc.mp3')
+mashup('Faris Shafi',5,10,'102003562-final.mp3')
