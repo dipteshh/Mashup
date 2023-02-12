@@ -2,7 +2,6 @@ from pytube import Search,YouTube
 from moviepy import editor as mp
 from moviepy.editor import AudioFileClip,concatenate_audioclips
 import os
-from pydub import AudioSegment
 
 def mashup(singer,count,duration,outputFile):
     s = Search(singer)
@@ -41,27 +40,25 @@ def mashup(singer,count,duration,outputFile):
                 print(v)
             except :
                 print('Cant convert video to audio')
-        print('Converted to Audio')
 
-    audioFiles =[]
     for f in files :
         if '.mp3' in f:
             try :
-                    audioFiles.append(f)
                     audio = AudioFileClip(f)
-                    clip = audio.subclip(0,duration)
+                    clip = audio.subclip(5,duration+5)
                     clip.write_audiofile(f)
             except:
                 print('Cant trim audio')
 
-    print(audioFiles)
-
     audioClips = []
-    for af in audioFiles :
-         audioClips.append(AudioFileClip(af))
+    try:
+        for af in files :
+                if '.mp3' in af:
+                    audioClips.append(AudioFileClip(af))
 
-    finalClip = concatenate_audioclips(audioClips)
-    finalClip.write_audiofile(outputFile)
+        finalClip = concatenate_audioclips(audioClips)
+        finalClip.write_audiofile(outputFile)
+    except:
+        print('cant merge audio')
 
 
-mashup('Faris Shafi',5,10,'102003562-final.mp3')
