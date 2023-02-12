@@ -2,6 +2,7 @@ from pytube import Search,YouTube
 from moviepy import editor as mp
 from moviepy.editor import AudioFileClip,concatenate_audioclips
 import os
+import sys
 
 def mashup(singer,count,duration,outputFile):
     s = Search(singer)
@@ -62,3 +63,11 @@ def mashup(singer,count,duration,outputFile):
         print('cant merge audio')
 
 
+if __name__ == "__main__" :
+    if len(sys.argv) != 5 :
+        raise ValueError
+    singer = sys.argv[1]
+    count = sys.argv[2]
+    duration = sys.argv[3]
+    outputFile = sys.argv[4]
+    mashup(singer,count,duration,outputFile)
